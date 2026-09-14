@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For my love, bebi & baby 💜</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="topbar">
+        <span class="logo">ICE ROCKS ✦ ELLA</span>
+        <div class="topbar-actions">
+          <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to light mode">🌙 Dark</button>
+        </div>
+      </div>
+
+      <section class="hero">
+        <div class="eyebrow">For my love, bebi & baby — interchangeable hehe</div>
+        <h1>Hi, <span>Ella</span> 🌙</h1>
+        <p>Happy 23rd birthday to the cutest architect-in-the-making, gamer girl, matcha personality, and Rapunzel-coded main character I know.</p>
+        <div class="quote">“Happy Birthday, love. Every day is special because of you. Today is a little more special, but somehow, tomorrow will be even.” 🤍</div>
+        <div class="badges"><span class="badge">Kams / Stellaluna</span><span class="badge">Kuromi energy</span><span class="badge">Bodada's hooman</span><span class="badge">purple supremacy</span></div>
+        <div class="actions" style="justify-content:center"><button class="primary" type="button" id="openPlannerBtn">Open our date planner ✨</button></div>
+      </section>
+
+      <div class="planner-window" id="plannerWindow">
+        <div class="planner-chrome"><span class="window-dots"><i></i><i></i><i></i></span><span>our little date planner 💜</span><button class="window-back" type="button" id="closePlannerBtn">Close</button></div>
+        <form id="dateForm">
+          <section class="panel screen is-active" id="datePanel">
+            <div class="section-head"><div><div class="step">01 — calendar check</div><h2>When are you free this week, <span>bebi?</span></h2></div><div class="tiny">September 15–20, 2026</div></div>
+            <p>Pick your available date para ma-lock natin ang cute little date natin. No pressure, promise. 🫶</p>
+            <div class="birthday">
+              <label class="choice"><input type="radio" name="date" value="September 15, 2026 — Birthday date" /><span>🎂 <strong>Birthday date mismo — Tuesday, September 15</strong><br /><span class="tiny">Your 23rd birthday deserves a main-character episode.</span></span></label>
+            </div>
+            <div class="calendar" id="weekCalendar"></div>
+            <div class="choice-grid date-option-grid">
+              <label class="choice"><input type="radio" name="date" value="Not available" /><span>Oops, I’m not free for this one, Ced 😅</span></label>
+              <label class="choice"><input type="radio" name="date" value="I'll decide" /><span>✨ I'll decide for the entire date</span></label>
+            </div>
+            <div class="field hidden" id="customDateWrap"><input id="customDate" type="date" /></div>
+            <div class="actions"><button class="primary" type="button" id="continueBtn">Continue, love →</button></div>
+            <p class="tiny">P.S. whatever you see and decide is my treat for you, it's your 23rd birthday :) Every day you are special, and today is a little more special than yesterday.</p>
+          </section>
+
+          <section class="panel screen" id="timePanel">
+            <div class="section-head"><div><div class="step">02 — time</div><h2>What time feels best for you, <span>love?</span></h2></div></div>
+            <div class="choice-grid" id="timeChoices"></div>
+            <div class="field hidden" id="customTimeWrap"><input id="customTime" type="text" placeholder="e.g. 4:30 PM – 7:00 PM" /></div>
+            <div class="actions"><button class="secondary" type="button" id="backToDateBtn">← Back</button><button class="primary" type="button" id="toActivityBtn">Next →</button></div>
+          </section>
+
+          <section class="panel screen" id="activityPanel">
+            <div class="section-head"><div><div class="step">03 — vibe</div><h2>What activity do you want? <span>✨</span></h2></div></div>
+            <div class="choice-grid" id="activityChoices"></div>
+            <div class="field hidden" id="customActivityWrap"><input id="customActivity" type="text" placeholder="Drop your dream activity here..." /></div>
+            <div class="actions"><button class="secondary" type="button" id="backToTimeBtn">← Back</button><button class="primary" type="button" id="toFoodBtn">Next →</button></div>
+          </section>
+
+          <section class="panel screen" id="foodPanel">
+            <div class="section-head"><div><div class="step">04 — cravings</div><h2>What do you want to eat? <span>🍔</span></h2></div></div>
+            <div class="choice-grid" id="foodChoices"></div>
+            <div class="field hidden" id="customFoodWrap"><input id="customFood" type="text" placeholder="Cravings reveal, go!" /></div>
+            <div class="actions"><button class="secondary" type="button" id="backToActivityBtn">← Back</button><button class="primary" type="button" id="toLocationBtn">Next →</button></div>
+          </section>
+
+          <section class="panel screen" id="locationPanel">
+            <div class="section-head"><div><div class="step">05 — destination</div><h2>Where do you want to go? <span>📍</span></h2></div></div>
+            <div class="choice-grid" id="locationChoices"></div>
+            <div class="field hidden" id="customLocationWrap"><input id="customLocation" type="text" placeholder="Your magical destination..." /></div>
+            <div class="actions"><button class="secondary" type="button" id="backToFoodBtn">← Back</button><button class="primary" type="button" id="reviewBtn">Show our plan →</button></div>
+          </section>
+
+          <section class="panel screen" id="reviewPanel">
+            <div class="step">06 — final check</div><h2>Our cute date plan 💌</h2>
+            <div class="review" id="review"></div>
+            <div class="note">Screenshot mo ito para hindi makalimutan ang itinerary, okay? Whatever you picked is my treat. See you, birthday girl. 💜</div>
+            <div class="actions"><button class="secondary" type="button" id="editBtn">← Edit choices</button><button class="primary" type="button" id="sendBtn">Confirm & send to Ced 💌</button></div>
+            <p class="tiny">This opens your mail app with the details addressed to <b>villarizaced@gmail.com</b>.</p>
+          </section>
+        </form>
+      </div>
+      <footer>Made with purple, black accents, matcha energy, and a lot of “cute mo” — Ced 💜</footer>
+    </main>
+
+    <div class="notice-modal hidden" id="noticeModal" aria-live="polite" aria-modal="true" role="dialog">
+      <div class="notice-card">
+        <div class="notice-icon">💌</div>
+        <h3 id="noticeTitle">A tiny reminder</h3>
+        <p id="noticeMessage">We’re ready when you are.</p>
+        <button type="button" class="primary" id="noticeCloseBtn">Okay, love</button>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
