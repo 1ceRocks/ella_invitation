@@ -175,6 +175,12 @@ $("editBtn").addEventListener("click", () => showScreen("timePanel"));
 
 function buildReview(decideAll, mode = "normal") {
   const date = selected("date");
+  const noteMap = {
+    notAvailable: "Next time na lang :)",
+    decideAll: "I’ll surprise you with the whole plan, love 💜",
+    normal: "Screenshot mo ito para hindi makalimutan ang itinerary, okay? Whatever you picked is my treat. See you, birthday girl. 💜"
+  };
+
   const items = decideAll
     ? mode === "notAvailable"
       ? [
@@ -195,6 +201,7 @@ function buildReview(decideAll, mode = "normal") {
       ];
 
   $("review").innerHTML = items.map(([label, value]) => `<div class="review-item"><b>${label}</b>${value}</div>`).join("");
+  $("reviewNote").textContent = decideAll && mode === "notAvailable" ? noteMap.notAvailable : decideAll && mode === "decideAll" ? noteMap.decideAll : noteMap.normal;
 }
 
 function getSavedPlan() {
