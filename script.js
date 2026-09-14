@@ -197,67 +197,34 @@ function buildReview(decideAll, mode = "normal") {
   $("review").innerHTML = items.map(([label, value]) => `<div class="review-item"><b>${label}</b>${value}</div>`).join("");
 }
 
-function buildEmailMessage() {
-  const entries = [...$("review").querySelectorAll(".review-item")].map((item) => item.innerText.replace(/\s+/g, " ").trim());
-  const selectedDate = selected("date");
-  const intro = selectedDate === "Not available"
-    ? "Hi Ced! I’m not free for this one, but I still want us to make the birthday date happen soon 💜"
-    : selectedDate === "I'll decide"
-    ? "Hi Ced! I’m letting you take the lead for the birthday date, and I’m ready for the surprise 💜"
-    : "Hi Ced! Confirmed ang date plan natin hehe 💜";
-
-  const body = [
-    intro,
-    "",
-    ...entries,
-    "",
-    "Screenshot saved na dapat! — Ella"
-  ].join("\n");
-
-  return {
-    subject: selectedDate === "Not available" ? "A tiny rain check for our date 💜" : "Our birthday date itinerary 💜",
-    body
-  };
-}
-
-function createMailtoLink(subject, body) {
-  return `mailto:villarizaced@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-function openEmailDraft(subject, body) {
-  const mailto = createMailtoLink(subject, body);
-  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent("villarizaced@gmail.com")}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  window.__lastMailto = mailto;
-
+function getSavedPlan() {
   try {
-    window.location.href = mailto;
+    return JSON.parse(localStorage.getItem("ellaBirthdayPlan") || "null");
   } catch (error) {
-    console.error("Mailto navigation failed", error);
+    return null;
   }
+}
 
-  setTimeout(() => {
-    try {
-      const gmailWindow = window.open(gmailUrl, "_blank", "noopener,noreferrer");
-      if (!gmailWindow) {
-        window.location.href = gmailUrl;
-      }
-    } catch (error) {
-      console.error("Gmail fallback failed", error);
-    }
-  }, 250);
+function savePlanLocally() {
+  const plan = {
+    savedAt: new Date().toISOString(),
+    date: getDateValue(),
+    time: getValueFromCustom("timeChoices", "customTime", "✨ Custom time range"),
+    activity: getValueFromCustom("activityChoices", "customActivity", "✨ Custom activity"),
+    food: getValueFromCustom("foodChoices", "customFood", "🍽️ Custom food"),
+    where: getValueFromCustom("locationChoices", "customLocation", "📍 Custom location"),
+    mode: selected("date") === "Not available" ? "notAvailable" : selected("date") === "I'll decide" ? "decideAll" : "normal"
+  };
 
-  setTimeout(() => {
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(body).catch(() => {});
-    }
-  }, 350);
+  localStorage.setItem("ellaBirthdayPlan", JSON.stringify(plan));
+  return plan;
 }
 
 $("sendBtn").addEventListener("click", () => {
-  const { subject, body } = buildEmailMessage();
-  openEmailDraft(subject, body);
-  showNotice("Email draft is ready 💌", "Your mail app should open with the message addressed to villarizaced@gmail.com.");
+  const plan = savePlanLocally();
+  const saved = getSavedPlan();
+  console.log("Saved birthday pick", saved || plan);
+  showNotice("Saved locally 💾", "Your plan is saved in this browser so you can check it later.");
 });
 
 const themeToggle = $("themeToggle");

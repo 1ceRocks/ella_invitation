@@ -150,7 +150,9 @@ textarea { min-height: 92px; resize: vertical; }
 .day-name { display: block; color: var(--muted); font-size: .7rem; text-transform: uppercase; }
 .day-number { display: block; font-size: 1.4rem; font-weight: 800; margin: 4px 0; }
 .day small { color: var(--pink); font-size: .68rem; }
-.birthday { border: 1px solid rgba(255,155,219,.42); background: linear-gradient(135deg, rgba(255,155,219,.11), rgba(168,117,255,.1)); padding: 18px; border-radius: 18px; margin: 22px 0; }
+.birthday { width: min(100%, 760px); border: 1px solid rgba(255,155,219,.42); background: linear-gradient(135deg, rgba(255,155,219,.11), rgba(168,117,255,.1)); padding: 18px; border-radius: 18px; margin: 22px auto; }
+.top-birthday { margin-top: 0; }
+.lower-birthday { margin-top: 18px; }
 .birthday label { border: 0 !important; padding: 0 !important; min-height: auto !important; text-align: center !important; background: none !important; display: flex; align-items: center; justify-content: center; gap: 10px; }
 .birthday .tiny { display: block; margin-top: 4px; }
 .birthday strong { color: var(--ink); }
@@ -163,25 +165,26 @@ button {
   -webkit-appearance: none;
   touch-action: manipulation;
   cursor: pointer;
-  border: 1px solid rgba(215,166,255,.35);
+  border: none;
   border-radius: 999px;
   padding: 13px 20px;
-  color: #fff;
-  background: linear-gradient(120deg, #9561ef, #ed72bd);
-  box-shadow: 0 10px 25px rgba(168,117,255,.25);
+  color: var(--ink);
+  background: transparent;
+  box-shadow: none;
   font: inherit;
   font-weight: 800;
-  transition: transform .25s cubic-bezier(.2,.8,.2,1), filter .25s ease, box-shadow .25s ease, background .25s ease;
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), opacity .25s ease, color .25s ease;
   min-height: 48px;
 }
 button:hover {
-  transform: translateY(-2px) scale(1.01);
-  filter: brightness(1.08);
-  box-shadow: 0 14px 30px rgba(168,117,255,.28);
+  transform: translateY(-1px);
+  opacity: 1;
+  box-shadow: none;
 }
-button:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(168,117,255,.25), 0 10px 25px rgba(168,117,255,.25); }
-.primary { background: linear-gradient(120deg, #9561ef, #ed72bd); box-shadow: 0 10px 25px rgba(168,117,255,.25); }
-.secondary { background: rgba(255,255,255,.08); border: 1px solid var(--line); box-shadow: none; }
+button:focus-visible { outline: none; box-shadow: none; }
+.primary { background: linear-gradient(120deg, #9561ef, #ed72bd); box-shadow: 0 10px 25px rgba(168,117,255,.25); color: #fff; }
+.secondary { background: transparent; border: none; box-shadow: none; color: var(--ink); }
+.hero-cta { display: inline-flex; align-items: center; justify-content: center; min-width: 220px; }
 body.light-theme .secondary {
   background: rgba(143,111,228,.08);
 }
